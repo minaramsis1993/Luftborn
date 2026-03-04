@@ -1,0 +1,21 @@
+<div class="filters-container">
+  <div class="left tabs">
+    @for (filter of filters; track filter) {
+      <div
+        class="filter-item"
+        [class.active]="filter === selectedFilter"
+        (click)="selectFilter(filter)"
+      >
+        {{ filter }}
+      </div>
+    }
+  </div>
+  <div class="right">
+    <select [(ngModel)]="selectedPriority" (change)="selectPriority(selectedPriority)">
+      @for (priority of priorities; track priority) {
+        <option [value]="priority">{{ priority }}</option>
+      }
+    </select>
+    <button class="new-task-btn">+ New Task</button>
+  </div>
+</div>
