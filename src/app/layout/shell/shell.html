@@ -1,0 +1,21 @@
+<div class="app-layout">
+  <aside class="sidebar">
+    <div class="logo">Task Manager</div>
+
+    <nav>
+      <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+      <a routerLink="/tasks" routerLinkActive="active">Tasks</a>
+      <a routerLink="/users" routerLinkActive="active">Users</a>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <header class="topbar">
+      <h1>Task Management Dashboard</h1>
+    </header>
+
+    <section class="page-content">
+      <router-outlet /> 
+    </section>
+  </main>
+</div>
