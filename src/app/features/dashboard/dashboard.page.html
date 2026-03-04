@@ -1,12 +1,11 @@
 <div class="stats-grid">
-  <stat-card
-    [logo]="'📊'"
-    [type]="'Total Tasks'"
-    [value]="156"
-    [trend]="'+12% this week'"
-  ></stat-card>
-  <stat-card [logo]="'✅'" [type]="'Completed'" [value]="24" [trend]="'+5% this week'"></stat-card>
-  <stat-card [logo]="'🔄'" [type]="'In Progress'" [value]="8" [trend]="'-2% this week'"></stat-card>
-  <stat-card [logo]="'⚠️'" [type]="'Overdue'" [value]="120" [trend]="'+8% this week'"></stat-card>
+  @for (stat of stats; track stat.title) {
+    <stat-card
+      [logo]="stat.logo"
+      [type]="stat.title"
+      [value]="stat.value"
+      [trend]="stat.trend"
+    ></stat-card>
+  }
 </div>
 <app-filters-bar></app-filters-bar>

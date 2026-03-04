@@ -3,7 +3,12 @@
     <div class="logo-icon">📋</div>
     <span>Task Manager</span>
   </div>
-  <input class="search" placeholder="🔍 Search tasks..." />
+  <input
+    [(ngModel)]="searchQuery"
+    (input)="onSearch(searchQuery())"
+    class="search"
+    placeholder="🔍 Search tasks..."
+  />
 
   <div class="right-section">
     <span class="bell">🔔</span>
