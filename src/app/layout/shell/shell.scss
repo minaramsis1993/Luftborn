@@ -1,57 +1,20 @@
-.app-layout {
+.layout {
   display: flex;
   height: 100vh;
-  background: #f5f7fb;
 }
 
-.sidebar {
-  width: 260px;
-  background: #1e293b;
-  color: white;
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-
-  .logo {
-    font-size: 20px;
-    font-weight: 600;
-    margin-bottom: 40px;
-  }
-
-  nav {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-
-    a {
-      text-decoration: none;
-      color: #cbd5e1;
-      padding: 10px 14px;
-      border-radius: 8px;
-      transition: 0.2s;
-
-      &.active,
-      &:hover {
-        background: #334155;
-        color: white;
-      }
-    }
-  }
-}
-
-.main-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.topbar {
-  padding: 24px;
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
   background: white;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e5e7eb;
+  z-index: 1000;
 }
 
-.page-content {
-  padding: 24px;
-  overflow: auto;
+main {
+  margin-top: 60px;
+  padding: 32px;
 }

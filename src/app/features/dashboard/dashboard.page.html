@@ -1,1 +1,11 @@
-<p>dashboard.page works!</p>
+<div class="stats-grid">
+  <stat-card
+    [logo]="'📊'"
+    [type]="'Total Tasks'"
+    [value]="156"
+    [trend]="'+12% this week'"
+  ></stat-card>
+  <stat-card [logo]="'✅'" [type]="'Completed'" [value]="24" [trend]="'+5% this week'"></stat-card>
+  <stat-card [logo]="'🔄'" [type]="'In Progress'" [value]="8" [trend]="'-2% this week'"></stat-card>
+  <stat-card [logo]="'⚠️'" [type]="'Overdue'" [value]="120" [trend]="'+8% this week'"></stat-card>
+</div>

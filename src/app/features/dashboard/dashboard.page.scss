@@ -1,0 +1,5 @@
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(220px, 1fr)); /* 4 equal columns */
+  gap: 24px; /* space between cards */
+}

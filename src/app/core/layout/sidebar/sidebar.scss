@@ -1,0 +1,50 @@
+/* SIDEBAR */
+.sidebar {
+  width: 230px;
+  background: #f3f4f6;
+  border-right: 1px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+}
+
+/* Nav */
+nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: calc(60px + 24px);
+}
+
+nav a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  font-size: 14px;
+  color: #6b7280;
+  border-radius: 6px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+nav a.active {
+  background: #2f80ed;
+  color: white;
+}
+
+nav a:hover:not(.active) {
+  background: #e5e7eb;
+}
+
+/* Button */
+.new-task-btn {
+  margin-top: 3.25rem;
+  background: #2f80ed;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+}

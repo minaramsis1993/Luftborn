@@ -1,0 +1,43 @@
+<aside class="sidebar">
+  <nav>
+    <a
+      routerLink="/dashboard"
+      [class]="{ active: activeTab === 'dashboard' }"
+      (click)="changeActiveTab('dashboard')"
+    >
+      <span class="icon"> 📊 </span>
+      Dashboard
+    </a>
+
+    <a
+      routerLink="/tasks"
+      [class]="{ active: activeTab === 'tasks' }"
+      (click)="changeActiveTab('tasks')"
+    >
+      <span class="icon">✅</span>
+      Tasks
+    </a>
+
+    <a>
+      <span class="icon">📅</span>
+      Calendar
+    </a>
+
+    <a>
+      <span class="icon">📈</span>
+      Analytics
+    </a>
+
+    <a>
+      <span class="icon">👥</span>
+      Team
+    </a>
+
+    <a>
+      <span class="icon">⚙️</span>
+      Settings
+    </a>
+  </nav>
+
+  <button class="new-task-btn">+ New Task</button>
+</aside>
