@@ -1,4 +1,4 @@
-import { Component, Type } from '@angular/core';
+import { Component, input, output, Type } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 export type FilterType = 'All' | 'To Do' | 'In Progress' | 'Done';
@@ -13,19 +13,18 @@ export type PriorityType = 'High' | 'Medium' | 'Low';
 })
 export class FiltersBar {
   filters: FilterType[] = ['All', 'To Do', 'In Progress', 'Done'];
+  selectedFilter = input.required<FilterType>();
+  selectedFilterChange = output<FilterType>();
 
-  selectedFilter: FilterType = 'All';
-
-  priorities: PriorityType[] = ['High', 'Medium', 'Low'];
-  selectedPriority: PriorityType = 'High';
+  priorities: any[] = ['High', 'Medium', 'Low'];
+  selectedPriority = input.required<PriorityType | null>();
+  selectedPriorityChange = output<PriorityType | null>();
 
   selectFilter(filter: FilterType) {
-    this.selectedFilter = filter;
-    console.log('Selected filter:', filter);
+    this.selectedFilterChange.emit(filter);
   }
 
-  selectPriority(priority: PriorityType) {
-    this.selectedPriority = priority;
-    console.log('Selected priority:', priority);
+  selectPriority(priority: PriorityType | null) {
+    this.selectedPriorityChange.emit(priority);
   }
 }

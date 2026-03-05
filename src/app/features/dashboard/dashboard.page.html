@@ -10,21 +10,32 @@
     ></stat-card>
   }
 </div>
-<app-filters-bar></app-filters-bar>
+<app-filters-bar
+  [selectedFilter]="selectedFilter()"
+  (selectedFilterChange)="selectedFilterChange($event)"
+  [selectedPriority]="selectedPriority()"
+  (selectedPriorityChange)="selectedPriorityChange($event)"
+></app-filters-bar>
 <div class="tasks-lists-grid-container">
-  <app-tasks-list-per-priority
-    [tasksTotal]="todoTasks().length"
-    [tasksType]="TaskStatusEnum.TODO"
-    [tasks]="todoTasks()"
-  ></app-tasks-list-per-priority>
-  <app-tasks-list-per-priority
-    [tasksTotal]="inProgressTasks().length"
-    [tasksType]="TaskStatusEnum.IN_PROGRESS"
-    [tasks]="inProgressTasks()"
-  ></app-tasks-list-per-priority>
-  <app-tasks-list-per-priority
-    [tasksTotal]="doneTasks().length"
-    [tasksType]="TaskStatusEnum.DONE"
-    [tasks]="doneTasks()"
-  ></app-tasks-list-per-priority>
+  @if (selectedFilter() === 'All' || selectedFilter() === 'To Do') {
+    <app-tasks-list-per-priority
+      [tasksTotal]="todoTasks().length"
+      [tasksType]="TaskStatusEnum.TODO"
+      [tasks]="todoTasks()"
+    ></app-tasks-list-per-priority>
+  }
+  @if (selectedFilter() === 'All' || selectedFilter() === 'In Progress') {
+    <app-tasks-list-per-priority
+      [tasksTotal]="inProgressTasks().length"
+      [tasksType]="TaskStatusEnum.IN_PROGRESS"
+      [tasks]="inProgressTasks()"
+    ></app-tasks-list-per-priority>
+  }
+  @if (selectedFilter() === 'All' || selectedFilter() === 'Done') {
+    <app-tasks-list-per-priority
+      [tasksTotal]="doneTasks().length"
+      [tasksType]="TaskStatusEnum.DONE"
+      [tasks]="doneTasks()"
+    ></app-tasks-list-per-priority>
+  }
 </div>

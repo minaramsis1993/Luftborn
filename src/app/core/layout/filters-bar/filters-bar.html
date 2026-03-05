@@ -3,7 +3,7 @@
     @for (filter of filters; track filter) {
       <div
         class="filter-item"
-        [class.active]="filter === selectedFilter"
+        [class.active]="filter === selectedFilter()"
         (click)="selectFilter(filter)"
       >
         {{ filter }}
@@ -11,7 +11,8 @@
     }
   </div>
   <div class="right">
-    <select [(ngModel)]="selectedPriority" (change)="selectPriority(selectedPriority)">
+    <select [ngModel]="selectedPriority" (ngModelChange)="selectPriority($event)">
+      <option [ngValue]="null" disabled selected>Priority</option>
       @for (priority of priorities; track priority) {
         <option [value]="priority">{{ priority }}</option>
       }
