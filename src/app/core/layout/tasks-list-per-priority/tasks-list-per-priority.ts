@@ -1,5 +1,7 @@
 import { NgClass } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
+import { FilterType } from '../filters-bar/filters-bar';
+import { TaskStatusEnum } from '../../models/models';
 
 @Component({
   selector: 'app-tasks-list-per-priority',
@@ -8,4 +10,8 @@ import { Component } from '@angular/core';
   templateUrl: './tasks-list-per-priority.html',
   styleUrl: './tasks-list-per-priority.scss',
 })
-export class TasksListPerPriority { }
+export class TasksListPerPriority {
+  tasksType = input.required<TaskStatusEnum>();
+  tasksTotal = input.required<number>();
+  tasks = input.required<any[]>();
+}

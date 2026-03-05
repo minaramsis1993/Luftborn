@@ -4,5 +4,5 @@
     {{ type() }}
   </div>
   <div class="value">{{ value() }}</div>
-  <div class="trend">{{ trend() }}</div>
+  <div class="trend" [ngStyle]="{ color: color() }">{{ trend() + ' ' + changeLabel() }}</div>
 </div>

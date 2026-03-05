@@ -1,8 +1,10 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, signal, computed } from '@angular/core';
 import { StatCard } from '../../shared/ui/stat-card/stat-card';
 import { FiltersBar } from "../../core/layout/filters-bar/filters-bar";
 import { TasksListPerPriority } from "../../core/layout/tasks-list-per-priority/tasks-list-per-priority";
-
+import { statistics } from '../../json/stats.json'
+import { Statistic, Task, TaskStatusEnum } from '../../core/models/models';
+import { tasks } from '../../json/tasks.json';
 @Component({
   standalone: true,
   imports: [StatCard, FiltersBar, TasksListPerPriority],
@@ -11,10 +13,20 @@ import { TasksListPerPriority } from "../../core/layout/tasks-list-per-priority/
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DashboardPage {
-  stats = [
-    { title: 'Total Tasks', value: 156, trend: '+12% this week', logo: '📊' },
-    { title: 'Completed', value: 120, trend: '+8%', logo: '✅' },
-    { title: 'Pending', value: 36, trend: '+20%', logo: '🔄' },
-    { title: 'Overdue', value: 15, trend: '-5%', logo: '⚠️' }
-  ];
+  TaskStatusEnum = TaskStatusEnum;
+  stats = signal<Statistic[]>(statistics as Statistic[]);
+
+  tasksList = signal<Task[]>(tasks as unknown as Task[]);
+  tasksWithOverdue = computed(() =>
+    this.tasksList().map(task => ({
+      ...task,
+      overdue: new Date(task.dueDate) < new Date()
+    }))
+  );
+
+  todoTasks = computed(() => this.tasksWithOverdue().filter(task => task.status === 'todo'));
+  inProgressTasks = computed(() => this.tasksWithOverdue().filter(task => task.status === 'in_progress'));
+  doneTasks = computed(() => this.tasksWithOverdue().filter(task => task.status === 'done'));
+
 }
+

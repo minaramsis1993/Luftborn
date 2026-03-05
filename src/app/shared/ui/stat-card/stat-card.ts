@@ -1,3 +1,4 @@
+import { NgStyle } from '@angular/common';
 import { Component, ChangeDetectionStrategy, input } from '@angular/core';
 
 @Component({
@@ -6,10 +7,13 @@ import { Component, ChangeDetectionStrategy, input } from '@angular/core';
   templateUrl: './stat-card.html',
   styleUrls: ['./stat-card.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [NgStyle],
 })
 export class StatCard {
   logo = input<string>();
   value = input<string | number>();
   trend = input<string>();
   type = input<string>();
- }
+  changeLabel = input<string>();
+  color = input<string>();
+}
