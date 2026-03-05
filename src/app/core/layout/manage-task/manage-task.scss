@@ -1,0 +1,70 @@
+.input-field {
+  width: 300px;
+  padding: 6px 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.manage-task-wrapper {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
+h2 {
+  margin: 0;
+  margin-bottom: 1rem;
+}
+
+.full-width {
+  width: 100%;
+}
+
+#duedate {
+  width: 100%;
+  display: block;
+}
+
+.datepicker-input {
+  padding: 0.5rem;
+  border: 1px solid #e5e7eb;
+  font-family: 'Inter', sans-serif;
+}
+
+.native-date-wrapper {
+  label {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 14px;
+  }
+}
+
+textarea {
+  font-family: 'Inter', sans-serif;
+}
+
+h2 {
+  font-size: 1.25rem;
+}
+
+button.manage-btn {
+  background: #1976d2;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  &:disabled {
+    background: #e5e7eb;
+    cursor: not-allowed;
+  }
+}

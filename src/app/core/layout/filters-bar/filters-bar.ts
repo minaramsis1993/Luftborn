@@ -1,5 +1,7 @@
-import { Component, input, output, Type } from '@angular/core';
+import { Component, inject, input, output, Type } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ManageTask } from '../manage-task/manage-task';
+import { MatDialog } from '@angular/material/dialog';
 
 export type FilterType = 'All' | 'To Do' | 'In Progress' | 'Done';
 export type PriorityType = 'High' | 'Medium' | 'Low';
@@ -12,6 +14,7 @@ export type PriorityType = 'High' | 'Medium' | 'Low';
   styleUrl: './filters-bar.scss',
 })
 export class FiltersBar {
+  dialog = inject(MatDialog);
   filters: FilterType[] = ['All', 'To Do', 'In Progress', 'Done'];
   selectedFilter = input.required<FilterType>();
   selectedFilterChange = output<FilterType>();
@@ -26,5 +29,16 @@ export class FiltersBar {
 
   selectPriority(priority: PriorityType | null) {
     this.selectedPriorityChange.emit(priority);
+  }
+
+  createNewTask() {
+    const dialogRef = this.dialog.open(ManageTask, {
+      data: {
+        isAdd: true,
+      },
+    });
+    dialogRef.afterClosed().subscribe((res) => {
+      console.log('result:', res);
+    });
   }
 }

@@ -1,5 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { TasksService } from '../../services/tasks-service';
+
 
 @Component({
   selector: 'app-topbar',
@@ -10,10 +12,10 @@ import { FormsModule } from '@angular/forms';
 })
 export class Topbar {
   searchQuery = signal<string>('');
+  constructor(private tasksService: TasksService) { }
 
   onSearch(query: string) {
-    console.log('Searching for:', query);
-    // implement filtering tasks in parent component
+    this.tasksService.searchQuery.set(query);
   }
 
 }

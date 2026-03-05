@@ -1,0 +1,76 @@
+<div class="manage-task-wrapper">
+  <button mat-icon-button mat-dialog-close class="close-btn">
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+    >
+      <line x1="18" y1="6" x2="6" y2="18"></line>
+      <line x1="6" y1="6" x2="18" y2="18"></line>
+    </svg>
+  </button>
+  <h2>{{ isAdd() ? 'Add Task' : 'Edit Task' }}</h2>
+  <input
+    [ngModel]="title()"
+    (ngModelChange)="title.set($event)"
+    class="input-field"
+    placeholder="Add Title"
+  />
+  <textarea
+    [ngModel]="description()"
+    (ngModelChange)="description.set($event)"
+    class="input-field"
+    placeholder="Add description"
+  ></textarea>
+  <!-- Priority -->
+  <select [ngModel]="priority()" (ngModelChange)="priority.set($event)" class="input-field">
+    <option [ngValue]="null" disabled>Priority</option>
+    <option value="High">High</option>
+    <option value="Medium">Medium</option>
+    <option value="Low">Low</option>
+  </select>
+  <!-- Due Date -->
+  <div class="native-date-wrapper">
+    <label for="duedate">Duedate</label>
+    <input
+      type="date"
+      [ngModel]="dueDate()"
+      (ngModelChange)="dueDate.set($event)"
+      id="duedate"
+      name="duedate"
+      class="datepicker-input"
+    />
+    <span class="validity"></span>
+  </div>
+
+  <!-- Assignee Name -->
+  <input
+    [ngModel]="assigneeName()"
+    (ngModelChange)="assigneeName.set($event)"
+    class="input-field"
+    placeholder="Username"
+  />
+
+  <!-- Assignee Email -->
+  <input
+    [ngModel]="assigneeEmail()"
+    (ngModelChange)="assigneeEmail.set($event)"
+    class="input-field"
+    placeholder="Email"
+  />
+
+  <!-- Tags -->
+  <input
+    [ngModel]="tags()"
+    (ngModelChange)="tags.set($event)"
+    class="input-field"
+    placeholder="Tags (comma separated)"
+  />
+
+  <button class="manage-btn" [disabled]="isDisabled()" (click)="onSubmit()">
+    {{ isAdd() ? 'Add Task' : 'Save Changes' }}
+  </button>
+</div>
