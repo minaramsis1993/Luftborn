@@ -23,9 +23,5 @@ export class Sidebar {
         isAdd: true,
       },
     });
-    dialogRef.afterClosed().subscribe((res) => {
-      console.log('Dialog closed');
-      console.log('result:', res);
-    });
   }
 }

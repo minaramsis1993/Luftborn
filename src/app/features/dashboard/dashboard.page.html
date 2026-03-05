@@ -22,6 +22,7 @@
       [tasksTotal]="todoTasks().length"
       [tasksType]="TaskStatusEnum.TODO"
       [tasks]="todoTasks()"
+      (onDelete)="onDeleteTask($event)"
     ></app-tasks-list-per-priority>
   }
   @if (selectedFilter() === 'All' || selectedFilter() === 'In Progress') {
@@ -29,6 +30,7 @@
       [tasksTotal]="inProgressTasks().length"
       [tasksType]="TaskStatusEnum.IN_PROGRESS"
       [tasks]="inProgressTasks()"
+      (onDelete)="onDeleteTask($event)"
     ></app-tasks-list-per-priority>
   }
   @if (selectedFilter() === 'All' || selectedFilter() === 'Done') {
@@ -36,6 +38,7 @@
       [tasksTotal]="doneTasks().length"
       [tasksType]="TaskStatusEnum.DONE"
       [tasks]="doneTasks()"
+      (onDelete)="onDeleteTask($event)"
     ></app-tasks-list-per-priority>
   }
 </div>

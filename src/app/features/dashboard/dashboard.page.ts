@@ -17,7 +17,8 @@ import { Subscription } from 'rxjs';
 export class DashboardPage {
   TaskStatusEnum = TaskStatusEnum;
   private tasksService = inject(TasksService);
-  sub!: Subscription;
+  addSubscription!: Subscription;
+  editSubscription!: Subscription;
   stats = signal<Statistic[]>(statistics as Statistic[]);
   selectedFilter = signal<FilterType>('All');
   selectedPriority = signal<PriorityType | null>(null);
@@ -47,13 +48,21 @@ export class DashboardPage {
 
 
   ngOnInit(): void {
-    this.sub = this.tasksService.taskAdded.subscribe((newTask) => {
+    this.addSubscription = this.tasksService.taskAdded.subscribe((newTask) => {
       this.tasksList.update((tasks) => [newTask, ...tasks]);
+    });
+    this.editSubscription = this.tasksService.taskEdited.subscribe((updatedTask) => {
+      this.tasksList.update(tasks =>
+        tasks.map(task => {
+          return task.id === updatedTask.id ? updatedTask : task;
+        })
+      );
     });
   }
 
   ngOnDestroy(): void {
-    this.sub.unsubscribe();
+    this.addSubscription?.unsubscribe();
+    this.editSubscription?.unsubscribe();
   }
 
   selectedFilterChange(event: FilterType) {
@@ -62,6 +71,10 @@ export class DashboardPage {
 
   selectedPriorityChange(event: PriorityType | null) {
     this.selectedPriority.set(event);
+  }
+
+  onDeleteTask(taskId: string) {
+    this.tasksList.update(tasks => tasks.filter(task => task.id !== taskId));
   }
 
 }

@@ -5,7 +5,11 @@
   </div>
   @for (task of tasks(); track task.id) {
     <div class="task-card" [ngClass]="{ 'due-over': task.overdue }">
-      <div class="options">⋮</div>
+      <div class="options" [matMenuTriggerFor]="menu">⋮</div>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="onEditTask(task.id)">Edit</button>
+        <button mat-menu-item (click)="onDeleteTask(task.id)">Delete</button>
+      </mat-menu>
       <span
         class="priority-pill"
         [ngClass]="{

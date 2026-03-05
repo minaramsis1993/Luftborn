@@ -46,11 +46,32 @@ export class ManageTask {
   });
 
   constructor(
+    private tasksService: TasksService,
     private dialogRef: MatDialogRef<ManageTask>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    private tasksService: TasksService
+    @Inject(MAT_DIALOG_DATA) public data: {
+      isAdd: boolean,
+      task?: Task
+    },
   ) {
-    // console.log('Dialog data:', data);
+    if (!data.isAdd && !!data.task) {
+      const {
+        title,
+        description,
+        priority,
+        dueDate,
+        assignee: { name, email },
+        tags
+      } = data.task;
+      this.title.set(title);
+      this.description.set(description);
+      this.priority.set(priority.charAt(0).toUpperCase() + priority.slice(1) as 'High' | 'Medium' | 'Low');
+      this.dueDate.set(dueDate);
+      this.assigneeName.set(name);
+      this.assigneeEmail.set(email);
+      this.tags.set(tags.join(', '));
+      this.isAdd.set(false);
+
+    }
   }
 
 
@@ -60,14 +81,14 @@ export class ManageTask {
 
   onSubmit() {
     const task: Task = {
-      id: this.generateId(),
+      id: this.data.isAdd ? this.generateId() : this.data.task?.id || this.generateId(),
       title: this.title(),
       description: this.description(),
-      status: 'in_progress',
+      status: this.data.isAdd ? 'todo' : this.data.task?.status || 'todo',
       priority: (this.priority()?.toLowerCase() ?? 'medium') as TaskPriority,
       dueDate: this.dueDate(),
       assignee: {
-        id: 'user-001', // generate or static for demo purpose
+        id: this.data.isAdd ? this.generateId() : this.data.task?.assignee.id || this.generateId(),
         name: this.assigneeName(),
         avatar: this.getAvatar(this.assigneeName()),
         email: this.assigneeEmail()
@@ -78,7 +99,11 @@ export class ManageTask {
       isOverdue: false,
       completedAt: ''
     };
-    this.tasksService.taskAdded.next(task);
+    if (this.data.isAdd) {
+      this.tasksService.taskAdded.next(task);
+    } else {
+      this.tasksService.taskEdited.next(task);
+    }
     this.dialogRef.close(task);
   }
 

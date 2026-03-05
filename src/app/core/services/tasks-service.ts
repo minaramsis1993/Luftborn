@@ -8,4 +8,5 @@ import { Task } from '../models/models';
 export class TasksService {
   searchQuery = signal<string>('');
   taskAdded = new Subject<Task>();
+  taskEdited = new Subject<Task>();
 }

@@ -37,8 +37,5 @@ export class FiltersBar {
         isAdd: true,
       },
     });
-    dialogRef.afterClosed().subscribe((res) => {
-      console.log('result:', res);
-    });
   }
 }

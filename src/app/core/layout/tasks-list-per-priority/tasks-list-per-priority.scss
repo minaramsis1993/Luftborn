@@ -125,3 +125,9 @@
     }
   }
 }
+
+::ng-deep .mat-mdc-menu-item-text {
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  font-family: 'Inter', sans-serif !important;
+}

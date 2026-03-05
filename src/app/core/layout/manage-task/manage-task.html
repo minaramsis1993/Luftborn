@@ -24,6 +24,8 @@
     (ngModelChange)="description.set($event)"
     class="input-field"
     placeholder="Add description"
+    rows="5"
+    style="resize: none"
   ></textarea>
   <!-- Priority -->
   <select [ngModel]="priority()" (ngModelChange)="priority.set($event)" class="input-field">
