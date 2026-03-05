@@ -11,10 +11,10 @@
     }
   </div>
   <div class="right">
-    <select [ngModel]="selectedPriority" (ngModelChange)="selectPriority($event)">
+    <select [ngModel]="selectedPriority()" (ngModelChange)="selectPriority($event)">
       <option [ngValue]="null" disabled selected>Priority</option>
       @for (priority of priorities; track priority) {
-        <option [value]="priority">{{ priority }}</option>
+        <option [ngValue]="priority">{{ priority }}</option>
       }
     </select>
     <button class="new-task-btn" (click)="createNewTask()">+ New Task</button>
