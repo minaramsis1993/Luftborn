@@ -1,32 +1,25 @@
-import { Component, computed, Inject, inject, output, signal } from '@angular/core';
+import { Component, computed, Inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
-import { provideNativeDateAdapter } from '@angular/material/core';
 import { Task, TaskPriority } from '../../models/models';
 import { TasksService } from '../../services/tasks-service';
 
-
-
 @Component({
   selector: 'app-manage-task',
-  imports: [FormsModule,
+  imports: [
+    FormsModule,
     MatButtonModule,
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
     MatButtonModule
   ],
   standalone: true,
-  providers: [provideNativeDateAdapter()],
   templateUrl: './manage-task.html',
   styleUrl: './manage-task.scss',
 })
@@ -73,7 +66,6 @@ export class ManageTask {
 
     }
   }
-
 
   generateId() {
     return 'task-' + Math.floor(Math.random() * 1000).toString();

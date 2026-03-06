@@ -26,6 +26,7 @@ export class DashboardPage {
 
   searchQuery = computed(() => this.tasksService.searchQuery());
 
+  // Multiple filters are applied in sequence to ensure that all conditions are met for the displayed tasks
   filteredTasks = computed(() =>
     this.tasksList().map(task => ({
       ...task,
@@ -76,6 +77,5 @@ export class DashboardPage {
   onDeleteTask(taskId: string) {
     this.tasksList.update(tasks => tasks.filter(task => task.id !== taskId));
   }
-
 }
 

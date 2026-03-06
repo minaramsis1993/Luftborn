@@ -8,7 +8,6 @@ export enum TaskStatusEnum {
     DONE = "Done"
 }
 
-
 export interface Statistic {
     id: string;
     title: string;
