@@ -12,16 +12,26 @@ header {
   top: 0;
   left: 0;
   right: 0;
-  height: 64px;
+  height: 4rem;
   background: white;
   border-bottom: 1px solid #e5e7eb;
   z-index: 1000;
 }
 
 main {
-  margin-top: 60px;
-  padding: 32px;
+  margin-top: 4rem;
+  padding: 2rem;
   &.tasks-active {
     margin-top: 1.25rem;
+  }
+
+  @media screen and (max-width: 968px) {
+    margin-top: 0;
+  }
+}
+
+@media screen and (max-width: 968px) {
+  .layout {
+    flex-direction: column;
   }
 }

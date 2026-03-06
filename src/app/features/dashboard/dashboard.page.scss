@@ -1,12 +1,21 @@
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(220px, 1fr)); 
-  gap: 24px;
+  grid-template-columns: repeat(4, minmax(220px, 1fr));
+  gap: 1.5rem;
+
+  @media screen and (max-width: 968px) {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .tasks-lists-grid-container {
-  margin-top: 32px;
+  margin-top: 2rem;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  gap: 1.5rem;
+  @media screen and (max-width: 968px) {
+    display: flex;
+    flex-direction: column;
+  }
 }
