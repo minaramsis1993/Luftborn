@@ -1,59 +1,29 @@
-# TaskDashboard
+# Task Dashboard
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.0-rc.2.
+Task Dashboard is a modern task management web application built with Angular 21. The purpose of this project is to demonstrate how a scalable frontend application can be structured using modern Angular features such as standalone components, Angular Signals for state management, and Angular Material UI components. The application simulates a typical productivity dashboard where users can view tasks, filter them by status and priority, and manage tasks through a modal form interface.
 
-## Development server
+The application layout follows a dashboard pattern consisting of a sidebar for navigation, a topbar for global actions such as searching tasks, a statistics section displaying summarized task information, a filter bar for refining task views, and multiple task lists that organize tasks by their current status. Tasks can be viewed as To Do, In Progress, or Done, and can also be filtered by priority level including High, Medium, and Low.
 
-To start a local development server, run:
+From an architectural perspective, the application uses Angular’s standalone component architecture rather than the traditional NgModule-based approach. This reduces boilerplate and keeps components more self-contained by allowing each component to directly declare its own imports. The project structure separates layout components, reusable UI components, and feature components to ensure maintainability and scalability as the application grows.
 
-```bash
-ng serve
-```
+State management in this project is handled using Angular Signals. Signals provide a lightweight reactive state model built directly into Angular, allowing components to respond automatically to data changes without the complexity of heavier state management libraries. The core application state stores tasks inside a signal, and derived values such as filtered task lists are implemented using computed signals. This ensures that filtering and derived data are recalculated only when the underlying state changes, which improves performance and keeps the UI reactive without unnecessary re-rendering.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+For example, tasks are stored in a reactive signal and filtered into different lists depending on their status and priority. Computed signals ensure that changes such as adding a task or editing an existing task automatically update the UI without manual change detection logic.
 
-## Code scaffolding
+The application also demonstrates several common frontend design patterns. Component-based architecture ensures that UI elements such as task cards, filter bars, and modal dialogs are reusable and encapsulated. Smart components handle state and business logic, while presentational components focus on rendering data and emitting events. Component communication is implemented using Angular’s modern `input()` and `output()` APIs. Services are used to manage shared logic and communication between components, such as task updates and dialog interactions.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+To run the project locally, first clone the repository using `git clone <repository-url>` and navigate to the project directory using `cd task-dashboard`. After that, install the dependencies by running `npm install`. Once the dependencies are installed, start the development server using `ng serve`. The development server will run the application at `http://localhost:4200`, and the browser will automatically refresh whenever source files are modified.
 
-```bash
-ng generate component component-name
-```
+The project currently uses Angular’s default environment configuration files located in `src/environments`. These files can be extended to support environment-specific configuration such as API endpoints or feature flags. In this implementation, tasks are stored in memory for demonstration purposes and no external backend service is required.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Several development scripts are available through Angular CLI. Running `ng serve` starts the development server. Running `ng build` builds the application and outputs optimized files into the `dist` directory. Running `ng test` executes unit tests using the Vitest test runner. Angular CLI also provides scaffolding tools for generating components, directives, or services using commands such as `ng generate component component-name`.
 
-```bash
-ng generate --help
-```
+Testing in this project is performed using Vitest, which provides a modern and fast unit testing environment. Tests can validate component rendering, service logic, task filtering functionality, and state updates. While this implementation focuses mainly on frontend behavior, the testing setup allows for future expansion to include more comprehensive test coverage. In the future, end-to-end testing frameworks such as Cypress or Playwright could be integrated to test complete user workflows.
 
-## Building
+Performance considerations were taken into account during development. Angular Signals were chosen as the state management approach because they allow fine-grained reactivity, meaning only the components that depend on changed data are re-evaluated. Computed signals ensure derived state such as filtered task lists is recalculated only when necessary. Reusable components help isolate UI rendering logic and reduce unnecessary DOM updates. Standalone components also reduce dependency complexity and keep bundles lightweight.
 
-To build the project run:
+There are a few known limitations in the current implementation. Tasks are stored only in memory and are not persisted to a backend service, meaning the task list resets when the application is refreshed. Authentication and user management are not implemented, and advanced filtering features such as filtering by due date, tags, or assigned users are not yet included. Additionally, drag-and-drop task management between task statuses is not implemented.
 
-```bash
-ng build
-```
+Several improvements could be made in future iterations of the project. Backend integration could be added to persist tasks using a REST API or cloud database. Drag-and-drop functionality could be implemented using Angular CDK to allow users to move tasks between status columns. Additional filtering capabilities such as filtering by due date, tags, or assigned users could be introduced. Form validation and error handling could be expanded to improve user experience, and more extensive automated testing could be added including integration tests and end-to-end tests.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+The project is implemented using Angular 21, TypeScript, Angular Signals, Angular Material, SCSS, and Vitest for testing. Overall, the application demonstrates how modern Angular features can be used to build a clean, reactive, and maintainable dashboard interface suitable for real-world frontend applications.
