@@ -4,6 +4,10 @@
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.08);
   height: 58vh;
   overflow: auto;
+
+  &.active-tasks {
+    height: 78vh;
+  }
 }
 
 .top {

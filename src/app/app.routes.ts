@@ -17,18 +17,6 @@ export const routes: Routes = [
                 loadComponent: () =>
                     import('./features/dashboard/dashboard.page')
                         .then(m => m.DashboardPage)
-            },
-            {
-                path: 'tasks',
-                loadComponent: () =>
-                    import('./features/tasks/tasks.page')
-                        .then(m => m.TasksPage)
-            },
-            {
-                path: 'users',
-                loadComponent: () =>
-                    import('./features/users/users.page')
-                        .then(m => m.UsersPage)
             }
         ]
     }

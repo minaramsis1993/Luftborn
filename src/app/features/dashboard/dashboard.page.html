@@ -1,15 +1,17 @@
-<div class="stats-grid">
-  @for (stat of stats(); track stat.id) {
-    <stat-card
-      [logo]="stat.icon"
-      [type]="stat.title"
-      [value]="stat.value"
-      [trend]="stat.change"
-      [changeLabel]="stat.changeLabel"
-      [color]="stat.color"
-    ></stat-card>
-  }
-</div>
+@if (tasksService.activeTab() === 'dashboard') {
+  <div class="stats-grid">
+    @for (stat of stats(); track stat.id) {
+      <stat-card
+        [logo]="stat.icon"
+        [type]="stat.title"
+        [value]="stat.value"
+        [trend]="stat.change"
+        [changeLabel]="stat.changeLabel"
+        [color]="stat.color"
+      ></stat-card>
+    }
+  </div>
+}
 <app-filters-bar
   [selectedFilter]="selectedFilter()"
   (selectedFilterChange)="selectedFilterChange($event)"

@@ -21,4 +21,7 @@ header {
 main {
   margin-top: 60px;
   padding: 32px;
+  &.tasks-active {
+    margin-top: 1.25rem;
+  }
 }

@@ -5,6 +5,7 @@ import { TaskStatusEnum } from '../../models/models';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDialog } from '@angular/material/dialog';
 import { ManageTask } from '../manage-task/manage-task';
+import { TasksService } from '../../services/tasks-service';
 
 
 @Component({
@@ -15,6 +16,7 @@ import { ManageTask } from '../manage-task/manage-task';
   styleUrl: './tasks-list-per-priority.scss',
 })
 export class TasksListPerPriority {
+  tasksService = inject(TasksService);
   tasksType = input.required<TaskStatusEnum>();
   tasksTotal = input.required<number>();
   tasks = input.required<any[]>();

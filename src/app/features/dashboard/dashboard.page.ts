@@ -16,7 +16,7 @@ import { Subscription } from 'rxjs';
 })
 export class DashboardPage {
   TaskStatusEnum = TaskStatusEnum;
-  private tasksService = inject(TasksService);
+  tasksService = inject(TasksService);
   addSubscription!: Subscription;
   editSubscription!: Subscription;
   stats = signal<Statistic[]>(statistics as Statistic[]);

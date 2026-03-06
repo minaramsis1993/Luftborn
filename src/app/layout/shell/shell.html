@@ -3,7 +3,7 @@
   <app-sidebar></app-sidebar>
 
   <div class="content-area">
-    <main>
+    <main [class.tasks-active]="tasksService.activeTab() === 'tasks'">
       <router-outlet />
     </main>
   </div>

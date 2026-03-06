@@ -1,4 +1,4 @@
-<div class="cards-list-wrapper">
+<div class="cards-list-wrapper" [class.active-tasks]="tasksService.activeTab() === 'tasks'">
   <div class="top">
     <div class="title">{{ tasksType() }}</div>
     <div class="number">{{ tasksTotal() }}</div>
